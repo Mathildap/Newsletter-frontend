@@ -64,6 +64,7 @@ function addNewUser(id) {
         fetch("http://localhost:3000/users/", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
         .then(resp => resp.json())
         .then(data => {
+            console.log(data);
         });
     };
 };
