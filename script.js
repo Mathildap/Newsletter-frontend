@@ -6,7 +6,7 @@ printStartPage();
 // EVT-LISTENER
 document.addEventListener("click", (evt) => {
     printLogInPage(evt.target.id);
-    newUser(evt.target.id);
+    addNewUser(evt.target.id);
     checkLogIn(evt.target.id);
     // printLoggedInPage(evt.target.id);
 });
@@ -26,7 +26,7 @@ function printStartPage() {
             <input type="email" placeholder="E-post" id="newUserEmail"><br>
             <input type="password" placeholder="Lösenord" id="newPassWord">
             <p class="mail-checkbox-p">Prenumerera på veckobrev?<input type="checkbox" id="mailCheckbox" class="mail-checkbox"></p>
-        <button type="submit" id="newUserBtn" class="new-user-btn">Skapa konto</button>
+        <button id="newUserBtn" class="new-user-btn">Skapa konto</button>
         </div>
         <p id="errorNewUserMsg" class="error-new-user-msg"></p>
 
@@ -41,8 +41,9 @@ function printStartPage() {
 
 //SKAPA EN INLOGGAD-SIDA
 
-function newUser(id) {
+function addNewUser(id) {
     if (id == "newUserBtn") {
+        console.log("klick på skapa konto");
         let uName = document.getElementById('newUserName').value;
         let uEmail = document.getElementById('newUserEmail').value;
         let pWord = document.getElementById('newPassWord').value;
@@ -57,13 +58,12 @@ function newUser(id) {
             subscribe = false;
         };
 
-        newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
+        let newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
         console.log(newUser);
 
-        fetch('http://localhost:3000/users/', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
+        fetch("http://localhost:3000/users/", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
         .then(resp => resp.json())
         .then(data => {
-            console.log(data);
         });
     };
 };
@@ -81,7 +81,7 @@ function printLogInPage(id) {
         <h2>Logga in</h2>
         <article id="existingUserContainer" class="existing-user-container">
                 <input type="text" placeholder="Användarnamn" id="existingUserName"><br>
-                <input type="password" placeholder="Lösenord" id="existingUserPassWord">
+                <input type="text" placeholder="Lösenord" id="existingUserPassWord">
                 <p id="errorLogInMsg" class"error-login-msg></p>
                 <button type="submit" id="logInBtn" class="login-btn">Logga in</button>
         </article>
@@ -98,9 +98,9 @@ function checkLogIn(id) {
 
         fetch('http://localhost:3000/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
         .then(resp => resp.json())
-        .then(data => {
-            // console.log(data);
-            userKey = data;
+        .then(answer => {
+
+            let userKey = answer;
             console.log(userKey);
             logInUser(userKey);
         });
@@ -109,7 +109,7 @@ function checkLogIn(id) {
 
 // FUNCTION - LOG IN USER
 function logInUser(userKey) {
-    fetch("http://localhost:3000/users/" + userKey, {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(userKey)})
+    fetch("http://localhost:3000/users/"+ userKey)
     .then(resp => resp.json())
     .then(data => {
         console.log(data);
