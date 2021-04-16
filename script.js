@@ -23,6 +23,7 @@ function printStartPage() {
     <article id="newUserContainer" class="new-user-container">
         <div>
             <input type="text" placeholder="Användarnamn" id="newUserName"><br>
+            <input type="email" placeholder="E-post" id="newUserEmail"><br>
             <input type="password" placeholder="Lösenord" id="newPassWord">
             <p class="mail-checkbox-p">Prenumerera på veckobrev?<input type="checkbox" id="mailCheckbox" class="mail-checkbox"></p>
         <button type="submit" id="newUserBtn" class="new-user-btn">Skapa konto</button>
@@ -43,6 +44,7 @@ function printStartPage() {
 function newUser(id) {
     if (id == "newUserBtn") {
         let uName = document.getElementById('newUserName').value;
+        let uEmail = document.getElementById('newUserEmail').value;
         let pWord = document.getElementById('newPassWord').value;
         let mailCheckbox = document.getElementById('mailCheckbox');
         let subscribe;
@@ -55,14 +57,13 @@ function newUser(id) {
             subscribe = false;
         };
 
-        newUser = {userName: uName, passWord: pWord, newsLetter: subscribe};
+        newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
         console.log(newUser);
 
         fetch('http://localhost:3000/users/', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
         .then(resp => resp.json())
         .then(data => {
             console.log(data);
-            console.log("Inloggningsförsök");
         });
     };
 };
@@ -98,9 +99,27 @@ function checkLogIn(id) {
         fetch('http://localhost:3000/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
         .then(resp => resp.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
+            userKey = data;
+            console.log(userKey);
+            logInUser(userKey);
         });
     };
+};
+
+// FUNCTION - LOG IN USER
+function logInUser(userKey) {
+    fetch("http://localhost:3000/users/" + userKey, {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(userKey)})
+    .then(resp => resp.json())
+    .then(data => {
+        console.log(data);
+        console.log("Printa logginsida");
+
+        main.innerHTML = "";
+        let h = document.createElement('div');
+        main.appendChild(h);
+        h.textContent = "HEJ ANVÄNDARE";
+    });
 };
 
 // FUNCTION - PRINT LOGGED IN PAGE
