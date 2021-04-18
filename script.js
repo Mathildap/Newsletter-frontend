@@ -101,9 +101,10 @@ function checkLogIn(id) {
         .then(resp => resp.json())
         .then(answer => {
 
-            let userKey = answer;
-            console.log(userKey);
-            logInUser(userKey);
+            let userInfo = answer;
+            console.log(userInfo);
+            logInUser(userInfo.key);
+            printLoggedInPage(userInfo.userName, userInfo.newsLetter);
         });
     };
 };
@@ -115,29 +116,35 @@ function logInUser(userKey) {
     .then(data => {
         console.log(data);
         console.log("Printa logginsida");
-
-        main.innerHTML = "";
-        let h = document.createElement('div');
-        main.appendChild(h);
-        h.textContent = "HEJ ANVÄNDARE";
     });
 };
 
 // FUNCTION - PRINT LOGGED IN PAGE
-function printLoggedInPage(id) {
-    if (id == "logInBtn") {
-        main.innerHTML = "";
-        const loggedInPageContainer = document.createElement('section');
-        main.appendChild(loggedInPageContainer);
-        loggedInPageContainer.id = "loggedInPageContainer";
-        loggedInPageContainer.setAttribute("class", "loggedin-page-container");
+function printLoggedInPage(userName, newsLetter) {
+    main.innerHTML = "";
+    const loggedInPageContainer = document.createElement('section');
+    main.appendChild(loggedInPageContainer);
+    loggedInPageContainer.id = "loggedInPageContainer";
+    loggedInPageContainer.setAttribute("class", "loggedin-page-container");
 
-        loggedInPageContainer.insertAdjacentHTML("beforeend", `
-        <h3>Användarnamn</h3>
-        <div>
-            <h4>- Prenumererar på veckobrev</h5>
-            <p>Avregistera här</p>
-        </div>
-        `);
+    let userNewsLetter;
+    let subscribe;
+
+    if (newsLetter == true) {
+        userNewsLetter = "Du prenumererar på vårat nyhetsbrev!";
+        subscribe = `<a href="#" id="unSubscribe">Avregistrera här</a>`;
+        console.log("nyhetsbrev");
+    } else {
+        userNewsLetter = "Du prenumererar inte på vårat nyhetsbrev!";
+        subscribe = `<a href="#" id="subscibe">Registrera dig här!</a>`;
+        console.log("ej nyhetsbrev");
     };
+
+    loggedInPageContainer.insertAdjacentHTML("beforeend", `
+    <h3>Välkommen ${userName}</h3>
+    <div>
+        <h4>${userNewsLetter}</h4>
+        <p>${subscribe}</p>
+    </div>
+    `);
 };
