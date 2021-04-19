@@ -1,0 +1,78 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Montserrat, 'Lucida sans', sans-serif;
+    color: #262625;
+}
+
+/* - - - - - - - - - - MAIN - - - - - - - - - - */
+main {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../city.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    position: absolute;
+}
+
+/* - - - - - - - - - - START PAGE - - - - - - - - - - */
+.startpage-container {
+    width: 60%;
+    height: 60%;
+    background: rgba( 255, 255, 255, 0.40 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.0px );
+    -webkit-backdrop-filter: blur( 10.0px );
+    border-radius: 5px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 20px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: space-evenly;
+
+    h2 {
+        font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 3px #fff;
+        letter-spacing: 3px;
+        text-align: center;
+        margin: 10px auto 20px auto;
+    }
+    input {
+        width: 90%;
+        height: 20px;
+        border: 0;
+        margin: 5px auto;
+        font-family: Montserrat, 'Lucida sans', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+    }
+    button {
+        font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 3px #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        background-color: #e8d9cd;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        padding: 8px 13px;
+        margin: 20px auto 5px auto;
+        display: block;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #b6a99e91;
+        }
+    }
+    .error-new-user-msg {
+        margin: 0px;
+        text-align: center;
+        color: red;
+    }
+}
+.start-page-divider {
+    border-right: 2px solid #ffffffac;
+}

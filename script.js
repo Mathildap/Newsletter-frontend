@@ -19,19 +19,19 @@ function printStartPage() {
     startPageContainer.setAttribute("class", "startpage-container");
 
     startPageContainer.insertAdjacentHTML("beforeend", `  
-    <h2>Skapa konto</h2>
     <article id="newUserContainer" class="new-user-container">
+        <h2>Skapa konto</h2>
         <div>
-            <input type="text" placeholder="Användarnamn" id="newUserName"><br>
-            <input type="email" placeholder="E-post" id="newUserEmail"><br>
+            <input type="text" placeholder="Användarnamn" id="newUserName">
+            <input type="email" placeholder="E-post" id="newUserEmail">
             <input type="password" placeholder="Lösenord" id="newPassWord">
             <p class="mail-checkbox-p">Prenumerera på veckobrev?<input type="checkbox" id="mailCheckbox" class="mail-checkbox"></p>
         <p id="errorNewUserMsg" class="error-new-user-msg"></p>
-        <button id="newUserBtn" class="new-user-btn">Skapa konto</button>
+        <button id="newUserBtn" class="new-user-btn">Skicka</button>
         </div>
 
     </article>
-
+    <article class="start-page-divider"></article>
     <article id="existingUserContainer" class="existing-user-container">
         <h4>Har du redan ett konto?</h4>
         <button id="startPageLogInBtn">Logga in</button>
