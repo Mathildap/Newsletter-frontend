@@ -8,7 +8,6 @@ document.addEventListener("click", (evt) => {
     printLogInPage(evt.target.id);
     addNewUser(evt.target.id);
     checkLogIn(evt.target.id);
-    // printLoggedInPage(evt.target.id);
 });
 
 // FUNCTION - PRINT START PAGE
@@ -39,36 +38,6 @@ function printStartPage() {
     `)
 };
 
-//SKAPA EN INLOGGAD-SIDA
-
-function addNewUser(id) {
-    if (id == "newUserBtn") {
-        console.log("klick på skapa konto");
-        let uName = document.getElementById('newUserName').value;
-        let uEmail = document.getElementById('newUserEmail').value;
-        let pWord = document.getElementById('newPassWord').value;
-        let mailCheckbox = document.getElementById('mailCheckbox');
-        let subscribe;
-        
-        if (mailCheckbox.checked) {
-            console.log("Prenumerera");
-            subscribe = true;
-        } else {
-            console.log("Ej prenumerera");
-            subscribe = false;
-        };
-
-        let newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
-        console.log(newUser);
-
-        fetch("http://localhost:3000/users/", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data);
-        });
-    };
-};
-
 // FUNCTION - PRINT LOGIN PAGE
 function printLogInPage(id) {
     if (id == "startPageLogInBtn") {
@@ -90,6 +59,40 @@ function printLogInPage(id) {
     };
 };
 
+// FUNCTION - ADD NEW USER
+function addNewUser(id) {
+    if (id == "newUserBtn") {
+        let uName = document.getElementById('newUserName').value;
+        let uEmail = document.getElementById('newUserEmail').value;
+        let pWord = document.getElementById('newPassWord').value;
+        let mailCheckbox = document.getElementById('mailCheckbox');
+        let subscribe;
+
+        if (uName == "" && uEmail == "") {
+            console.log("Empty fields");
+            return;
+        } else {
+            if (mailCheckbox.checked) {
+                console.log("Prenumerera");
+                subscribe = true;
+            } else {
+                console.log("Ej prenumerera");
+                subscribe = false;
+            };
+    
+            let newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
+            console.log(newUser);
+    
+            fetch("http://localhost:3000/users/", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+            });
+        };
+    };
+};
+
+// FUNCTION - CHECK USER LOGIN
 function checkLogIn(id) {
     if (id == "logInBtn") {
         exUserName = document.getElementById('existingUserName').value;
@@ -103,21 +106,22 @@ function checkLogIn(id) {
 
             let userInfo = answer;
             console.log(userInfo);
-            logInUser(userInfo.key);
+            localStorage.setItem("User", userInfo.key);
             printLoggedInPage(userInfo.userName, userInfo.newsLetter);
         });
+        console.log("Fel inlogg");
     };
 };
 
-// FUNCTION - LOG IN USER
-function logInUser(userKey) {
-    fetch("http://localhost:3000/users/"+ userKey)
-    .then(resp => resp.json())
-    .then(data => {
-        console.log(data);
-        console.log("Printa logginsida");
-    });
-};
+// // FUNCTION - LOG IN USER
+// function logInUser(userKey) {
+//     fetch("http://localhost:3000/users/"+ userKey)
+//     .then(resp => resp.json())
+//     .then(data => {
+//         console.log(data);
+//         console.log("Printa logginsida");
+//     });
+// };
 
 // FUNCTION - PRINT LOGGED IN PAGE
 function printLoggedInPage(userName, newsLetter) {
@@ -132,11 +136,11 @@ function printLoggedInPage(userName, newsLetter) {
 
     if (newsLetter == true) {
         userNewsLetter = "Du prenumererar på vårat nyhetsbrev!";
-        subscribe = `<a href="#" id="unSubscribe">Avregistrera här</a>`;
+        subscribe = `<a href="#" id="subscribe">Avregistrera här</a>`;
         console.log("nyhetsbrev");
     } else {
         userNewsLetter = "Du prenumererar inte på vårat nyhetsbrev!";
-        subscribe = `<a href="#" id="subscibe">Registrera dig här!</a>`;
+        subscribe = `<a href="#" id="subscribe">Registrera dig här!</a>`;
         console.log("ej nyhetsbrev");
     };
 
@@ -147,4 +151,17 @@ function printLoggedInPage(userName, newsLetter) {
         <p>${subscribe}</p>
     </div>
     `);
+
+    document.getElementById('subscribe').addEventListener('click', () => {
+        if (newsLetter == true) {
+            console.log("vill asregistrera");
+            let changeSubscribe = {newsLetter: false};
+            fetch("http://localhost:3000/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscribe)})
+            .then(resp => resp.json())
+            .then(data => {
+            });
+        } else {
+            console.log("vill registrera");
+        };
+    });
 };
