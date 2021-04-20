@@ -2,6 +2,7 @@
 const main = document.querySelector('main');
 
 printStartPage();
+// checkLS();
 
 // EVT-LISTENER
 document.addEventListener("click", (evt) => {
@@ -10,6 +11,23 @@ document.addEventListener("click", (evt) => {
     checkLogIn(evt.target.id);
     logOut(evt.target.id);
 });
+
+//LOCAL STORAGE
+function checkLS() {
+    if (localStorage.getItem("User")) {
+        let savedUser = localStorage.getItem("User");
+        console.log(savedUser);
+
+        fetch("http://localhost:3000/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
+        .then(res => res.json())
+        .then(answer => {
+            console.log(answer);
+            let userInfo = answer;
+            printLoggedInPage(userInfo.key, userInfo.userName, userInfo.newsLetter);
+        });
+    };
+};
+
 
 // FUNCTION - PRINT START PAGE
 function printStartPage() {
