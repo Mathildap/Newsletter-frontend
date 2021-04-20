@@ -50,7 +50,7 @@ function printStartPage() {
     </article>
     <article class="start-page-divider"></article>
     <article id="existingUserContainer" class="existing-user-container">
-        <h4>Har du redan ett konto?</h4>
+        <h4>Har du ett konto?</h4>
         <button id="startPageLogInBtn">Logga in</button>
     </article>
     `)
@@ -69,8 +69,8 @@ function printLogInPage(id) {
         <h2>Logga in</h2>
         <article id="existingUserContainer" class="existing-user-container">
                 <input type="text" placeholder="Användarnamn" id="existingUserName"><br>
-                <input type="text" placeholder="Lösenord" id="existingUserPassWord">
-                <p id="errorLogInMsg" class"error-login-msg></p>
+                <input type="password" placeholder="Lösenord" id="existingUserPassWord">
+                <p id="errorLogInMsg" class="error-login-msg"></p>
                 <button type="submit" id="logInBtn" class="login-btn">Logga in</button>
         </article>
         `);
@@ -162,12 +162,12 @@ function printLoggedInPage(userKey, userName, newsLetter) {
 // FUNCTION - PRINT CORRECT LOGGED-IN-TEXT
 function printLoggedInText(userName, newsLetterText, subscribeText) {
     loggedInPageContainer.insertAdjacentHTML("beforeend", `
-        <h3>Välkommen ${userName}</h3>
+        <h3>Välkommen, ${userName}</h3>
         <div>
             <h4>${newsLetterText}</h4>
             <p>${subscribeText}</p>
         </div>
-        <div><button id="logOutBtn">Logga ut</button></div>
+        <div><button id="logOutBtn" class="log-out-btn">Logga ut</button></div>
     `);
 };
 
