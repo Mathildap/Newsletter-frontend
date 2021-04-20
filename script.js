@@ -169,8 +169,10 @@ function subscription(userKey, newsLetter) {
 
     fetch("http://localhost:3000/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscription)})
     .then(resp => resp.json())
-    .then(data => {
-        console.log(data);
+    .then(answer => {
+        console.log(answer);
+        let userInfo = answer;
+        printLoggedInPage(userInfo.key, userInfo.userName, userInfo.newsLetter);
     });
 };
 
