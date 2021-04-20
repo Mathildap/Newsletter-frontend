@@ -2,7 +2,7 @@
 const main = document.querySelector('main');
 
 printStartPage();
-// checkLS();
+checkLS();
 
 // EVT-LISTENER
 document.addEventListener("click", (evt) => {
@@ -15,11 +15,11 @@ document.addEventListener("click", (evt) => {
 //LOCAL STORAGE
 function checkLS() {
     if (localStorage.getItem("User")) {
-        let savedUser = localStorage.getItem("User");
-        console.log(savedUser);
+        let getUser = localStorage.getItem("User");
+        let savedUser = {getUser};
 
         fetch("http://localhost:3000/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
-        .then(res => res.json())
+        .then(resp => resp.json())
         .then(answer => {
             console.log(answer);
             let userInfo = answer;
@@ -27,7 +27,6 @@ function checkLS() {
         });
     };
 };
-
 
 // FUNCTION - PRINT START PAGE
 function printStartPage() {
