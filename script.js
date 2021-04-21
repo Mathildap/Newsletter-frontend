@@ -18,7 +18,7 @@ function checkLS() {
         let getUser = localStorage.getItem("User");
         let savedUser = {getUser};
 
-        fetch("https://newsletter-mathildap.herokuapp.com/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
+        fetch("http://localhost:3000/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
         .then(resp => resp.json())
         .then(answer => {
             console.log(answer);
@@ -102,7 +102,7 @@ function addNewUser(id) {
             let newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
             console.log(newUser);
     
-            fetch("https://newsletter-mathildap.herokuapp.com/users", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
+            fetch("http://localhost:3000/users", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
             .then(resp => resp.json())
             .then(data => {
                 console.log(data);
@@ -120,7 +120,7 @@ function checkLogIn(id) {
 
         user = {"userName": exUserName, "passWord": exPassWord};
 
-        fetch('https://newsletter-mathildap.herokuapp.com/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
+        fetch('http://localhost:3000/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
         .then(resp => resp.json())
         .then(answer => {
 
@@ -184,7 +184,7 @@ function subscription(userKey, newsLetter) {
         changeSubscription = {key: userKey, newsLetter: true};
     };
 
-    fetch("https://newsletter-mathildap.herokuapp.com/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscription)})
+    fetch("http://localhost:3000/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscription)})
     .then(resp => resp.json())
     .then(answer => {
         console.log(answer);
