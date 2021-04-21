@@ -102,7 +102,7 @@ function addNewUser(id) {
             let newUser = {userName: uName, passWord: pWord, uEmail: uEmail, newsLetter: subscribe};
             console.log(newUser);
     
-            fetch("http://localhost:3000/users/", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
+            fetch("https://newsletter-mathildap.herokuapp.com/users", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(newUser)})
             .then(resp => resp.json())
             .then(data => {
                 console.log(data);
