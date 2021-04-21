@@ -86,7 +86,7 @@ function addNewUser(id) {
         let mailCheckbox = document.getElementById('mailCheckbox');
         let subscribe;
 
-        if (uName == "" && uEmail == "") {
+        if (uName == "" || uEmail == "" || pWord == "") {
             console.log("Empty fields");
             document.getElementById('errorNewUserMsg').innerText = "Fyll i alla fälten";
             return;
@@ -107,7 +107,7 @@ function addNewUser(id) {
             .then(data => {
                 console.log(data);
             });
-            document.getElementById('errorNewUserMsg').innerText = "Konto är skapat, nu kan du logga in!";
+            document.getElementById('errorNewUserMsg').innerHTML = `Konto är skapat,<br> nu kan du logga in!`;
         };
     };
 };
