@@ -18,7 +18,7 @@ function checkLS() {
         let getUser = localStorage.getItem("User");
         let savedUser = {getUser};
 
-        fetch("http://localhost:3000/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
+        fetch("https://newsletter-mathildap.herokuapp.com/users/localstorage", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(savedUser)})
         .then(resp => resp.json())
         .then(answer => {
             console.log(answer);
@@ -120,7 +120,7 @@ function checkLogIn(id) {
 
         user = {"userName": exUserName, "passWord": exPassWord};
 
-        fetch('http://localhost:3000/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
+        fetch('https://newsletter-mathildap.herokuapp.com/users/login', {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)})
         .then(resp => resp.json())
         .then(answer => {
 
@@ -184,7 +184,7 @@ function subscription(userKey, newsLetter) {
         changeSubscription = {key: userKey, newsLetter: true};
     };
 
-    fetch("http://localhost:3000/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscription)})
+    fetch("https://newsletter-mathildap.herokuapp.com/users/subscribe", {method: "post", headers: {"Content-type": "application/json"}, body: JSON.stringify(changeSubscription)})
     .then(resp => resp.json())
     .then(answer => {
         console.log(answer);
