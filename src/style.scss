@@ -18,8 +18,7 @@ main {
 }
 
 /* - - - - - - - - - - START PAGE - - - - - - - - - - */
-.startpage-container {
-    width: 60%;
+.startpage-container, .login-page-container, .loggedin-page-container {
     background: rgba( 255, 255, 255, 0.40 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7.0px );
@@ -28,35 +27,37 @@ main {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 20px;
     margin: 60px auto;
+}
+.startpage-container {
+    width: 60%;
     display: flex;
     justify-content: space-evenly;
-
-    h2 {
-        font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
-        text-transform: uppercase;
-        text-shadow: 0px 0px 3px #fff;
-        letter-spacing: 3px;
-        text-align: center;
-        margin: 10px auto 20px auto;
-    }
-    input {
-        width: 90%;
-        height: 20px;
-        border: 0;
-        margin: 5px auto;
-        font-family: Montserrat, 'Lucida sans', sans-serif;
-        letter-spacing: 1px;
-        outline: none;
-        display: block;
-    }
-    .mail-checkbox-p {
-        font-size: 15px;
-    }
-    .error-new-user-msg {
-        margin: 0px;
-        text-align: center;
-        color: #7d5b50;
-    }
+}
+input {
+    width: 90%;
+    height: 20px;
+    border: 0;
+    margin: 5px auto;
+    font-family: Montserrat, 'Lucida sans', sans-serif;
+    letter-spacing: 1px;
+    outline: none;
+    display: block;
+}
+h2 {
+    font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 3px #fff;
+    letter-spacing: 3px;
+    text-align: center;
+    margin: 10px auto 20px auto;
+}
+.mail-checkbox-p {
+    font-size: 15px;
+}
+.error-new-user-msg {
+    margin: 0px;
+    text-align: center;
+    color: #7d5b50;
 }
 .start-page-divider {
     border-right: 2px solid #ffffffac;
@@ -96,48 +97,9 @@ button {
 /* - - - - - - - - - - LOG IN PAGE - - - - - - - - - - */
 .login-page-container {
     width: 40%;
-    background: rgba( 255, 255, 255, 0.40 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 7.0px );
-    -webkit-backdrop-filter: blur( 10.0px );
-    border-radius: 5px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 20px;
-    margin: 60px auto;
 
-    h2 {
-        font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
-        text-transform: uppercase;
-        text-shadow: 0px 0px 3px #fff;
-        letter-spacing: 3px;
-        text-align: center;
-        margin: 10px auto 20px auto;
-    }
     input {
-        width: 90%;
-        height: 20px;
-        border: 0;
-        margin: 5px 5%;
-        font-family: Montserrat, 'Lucida sans', sans-serif;
-        letter-spacing: 1px;
-        outline: none;
-    }
-    button {
-        font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
-        text-transform: uppercase;
-        font-size: 15px;
-        letter-spacing: 1px;
-        background-color: #ffffff;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
-        padding: 8px 13px;
-        margin: 20px auto 5px auto;
-        display: block;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background-color: #ffffff30;
-            border: 1px solid #ffffffaa;
-        }
+        display: inline;
     }
 }
 .error-login-msg {
@@ -149,14 +111,6 @@ button {
 /* - - - - - - - - - - USER PAGE - - - - - - - - - - */
 .loggedin-page-container {
     width: 60%;
-    background: rgba( 255, 255, 255, 0.40 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 7.0px );
-    -webkit-backdrop-filter: blur( 10.0px );
-    border-radius: 5px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 20px;
-    margin: 60px auto;
 
     h3 {
         font-family: 'Nanum Myeongjo', 'Goudy Old Style', serif;
