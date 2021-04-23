@@ -134,7 +134,9 @@ function checkLogIn(id) {
             localStorage.setItem("User", userInfo.key);
             printLoggedInPage(userInfo.key, userInfo.userName, userInfo.newsLetter);
         });
-        document.getElementById('errorLogInMsg').innerText = "Fel användarnamn eller lösenord, försök igen!";
+        setTimeout(function(){
+            document.getElementById('errorLogInMsg').innerText = "Fel användarnamn eller lösenord, försök igen!";
+        }, 3000);
     };
 };
 
