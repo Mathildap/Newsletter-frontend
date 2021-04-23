@@ -106,6 +106,11 @@ function addNewUser(id) {
             .then(resp => resp.json())
             .then(data => {
                 console.log(data);
+                if (data == "Exist") {
+                    console.log("Email already exist");
+                    document.getElementById('errorNewUserMsg').innerHTML = `Email finns redan!`;
+                    return;
+                };
             });
             document.getElementById('errorNewUserMsg').innerHTML = `Konto är skapat,<br> nu kan du logga in!`;
         };
